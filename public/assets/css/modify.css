@@ -1,0 +1,23 @@
+@media (max-width: 991px) and (min-width: 576px) {
+    .navbar-light .navbar-nav .nav-link {
+        color: #FFFFFF !important; /* Your tablet-specific styles go here */
+    }
+}
+/* register Loyalty Points Container */
+.custom-container{
+    width:60%;
+    max-width:800px;
+  }
+    @media (max-width: 767px) {
+        .custom-container {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .custom-container {
+            width: 100%;
+        }
+    }
+
+    
