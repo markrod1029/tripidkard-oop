@@ -7,6 +7,11 @@ class Login extends Controller
 {
     public function index()
     {
+        // Check if the user is already logged in
+        if (Auth::logged_in()) {
+            $this->redirectBasedOnUserType(Auth::user());
+        }
+
         $errors = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,7 +44,7 @@ class Login extends Controller
                 $this->redirect('/tenant/home');
                 break;
             default:
-                $this->redirect('/home');
+                $this->redirect('/login');
         }
     }
 }

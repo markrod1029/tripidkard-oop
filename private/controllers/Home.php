@@ -9,10 +9,10 @@ class Home extends Controller
     function index()
     {
     
-        if(!Auth::logged_in())
-        {
+        if (!Auth::logged_in('enterprise')) {
             $this->redirect('login');
         }
+
         
         $merchant = new Merchant() ;
 

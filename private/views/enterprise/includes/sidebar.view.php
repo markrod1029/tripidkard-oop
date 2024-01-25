@@ -7,7 +7,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-
+  
       <div class="user-panel d-flex">
         <div class="image"  style="position:relative; right:10px;">
         <img src="<?=ASSETS?>/images/profile.jpg" class="img-circle elevation-2" alt="User Image" style="height:50px; width:50px;">
@@ -37,41 +37,13 @@
             </a>
           </li>
 
-          <li class="nav-item has-treeview ">
-           <a href="#" class="nav-link">
-             <i class="nav-icon fas fa-users-card"></i>
-             <p>
-           Enterprise Listing
-               <i class="right fas fa-angle-left"></i>
-             </p>
-           </a>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="<?=ROOT?>/enterprise-listing" class="nav-link ">
-                <i class="far fa-circle nav-icon"></i>
-                 <p>Enterprise List</p>
-               </a>
-             </li>
-
-             <li class="nav-item">
-               <a href="<?=ROOT?>/enterprise-archive" class="nav-link">
-                   <i class="far fa-circle nav-icon"></i>
-                 <p>Enterprise Archive</p>
-               </a>
-             </li>
-             <li class="nav-item">
-               <a href="<?=ROOT?>/enterprise-register?action=register" class="nav-link ">
-                <i class="far fa-circle nav-icon"></i>
-                 <p>Enterprise Register </p>
-               </a>
-             </li>
-             
-           </ul>
+          <li class="nav-item">
+            <a href="tripidkard-scanner" class="nav-link">
+              <i class="nav-icon fa fa-qrcode"></i>
+              <p>QR Code Scanner</p>
+            </a>
           </li>
-
-
-
-             
+               
           <li class="nav-item has-treeview ">
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-users"></i>
@@ -82,60 +54,33 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="<?=ROOT?>/merchant-list" class="nav-link ">
+               <a href="merchant-list" class="nav-link ">
                 <i class="far fa-circle nav-icon"></i>
                  <p>Merchant List</p>
                </a>
              </li>
 
-             
-             <li class="nav-item">
-               <a href="<?=ROOT?>/merchant-archive" class="nav-link">
-                   <i class="far fa-circle nav-icon"></i>
-                 <p>Merchant Archive</p>
-               </a>
-             </li>
-
-             <li class="nav-item">
-               <a href="<?=ROOT?>/merchant-register?action=register" class="nav-link">
-                   <i class="far fa-circle nav-icon"></i>
-                 <p>Merchant Register</p>
-               </a>
-             </li>
 
            </ul>
           </li>
-          
 
-          <li class="nav-item has-treeview ">
-           <a href="#" class="nav-link">
-             <i class="nav-icon fas fa-credit-card"></i>
-             <p>
-              TripidKard Code
-               <i class="right fas fa-angle-left"></i>
-             </p>
-           </a>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-               <a href="<?=ROOT?>/tripidkard" class="nav-link ">
-                <i class="far fa-circle nav-icon"></i>
-                 <p>TripidKard List</p>
-               </a>
-             </li>
-             <li class="nav-item">
-               <a href="<?=ROOT?>/tripidkard-register" class="nav-link">
-                   <i class="far fa-circle nav-icon"></i>
-                 <p> Register Tripidkard</p>
-               </a>
-             </li>
-           </ul>
+
+          <li class="nav-item">
+            <a href="tripidkard" class="nav-link">
+              <i class="nav-icon fa fa-credit-card"></i>
+              <p>TripidKard</p>
+            </a>
           </li>
 
+          <li class="nav-item">
+                <a href="discount" class="nav-link">
+                    <i class="nav-icon fa fa-money"></i>
+                    <p>Discount</p>
+                    <span class="badge badge-danger badge-pill ml-2" ><?php echo $validDiscountCount ?></span>
+                </a>
+            </li>
 
 
-          
-
-       
 
 
           <li class="nav-item has-treeview ">
@@ -148,13 +93,13 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="<?=ROOT?>/customer-list" class="nav-link ">
+               <a href="customer-list" class="nav-link ">
                 <i class="far fa-circle nav-icon"></i>
                  <p>Customer List</p>
                </a>
              </li>
              <li class="nav-item">
-               <a href="<?=ROOT?>/customer-register" class="nav-link">
+               <a href="customer-register?action=register" class="nav-link">
                    <i class="far fa-circle nav-icon"></i>
                  <p>Customer Register</p>
                </a>
@@ -173,28 +118,30 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="<?=ROOT?>/loyalty-points" class="nav-link ">
+               <a href="loyalty-points" class="nav-link ">
                 <i class="far fa-circle nav-icon"></i>
                  <p> Loyalty Points List</p>
                </a>
              </li>
+
              <li class="nav-item">
-               <a href="<?=ROOT?>/loyalty-points-register" class="nav-link">
-                   <i class="far fa-circle nav-icon"></i>
-                 <p>Register Loyalty Points</p>
-               </a>
-             </li>
+            <a href="reedem-loyalty" class="nav-link">
+              <i class="nav-icon fa fa-coins"></i>
+              <p>Reedem Loyalty Points</p>
+            </a>
+          </li>
+
            </ul>
           </li>
 
           
+        
           <li class="nav-item">
-            <a href="<?=ROOT?>/activity-log" class="nav-link">
-              <i class="nav-icon fa fa-coins"></i>
-              <p>Activity Logs</p>
+            <a href="activity_log" class="nav-link">
+              <i class="nav-icon fa fa-history"></i>
+              <p>Activity Log</p>
             </a>
           </li>
-
 
 
           <br>
@@ -238,6 +185,7 @@ $(function () {
 
 
   <style>
+
 @media (max-width: 667px){
 .input-group label {
     text-align: left;
@@ -245,7 +193,8 @@ $(function () {
     margin-bottom: 5px;
     text-align: left !important;
 }
-}
+ }
+ 
 .layout-top-nav .wrapper .main-header .brand-image {
   margin-top: -1.5rem;
   margin-right: 1.2rem;
@@ -315,9 +264,7 @@ $(function () {
     background-image: url('https://tripidkard.com/wp-content/uploads/2023/11/bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
-  position: relative;
-  /* background: url(../images/background.png) center no-repeat; */
-width:100%;
+position: relative;
   padding-top:20px;
   padding-bottom:20px;
   overflow: hidden;
@@ -326,12 +273,19 @@ width:100%;
 
 }
 
+
 .user-panel .info {
-  display: inline-block;
+  display: inline-block ;
   padding:0;
+  height: 100%;
+    justify-content: center;
 }
 
-
+.info {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
 .con{
   height: 500px;
   overflow-y: auto;

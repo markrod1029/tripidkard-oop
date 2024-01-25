@@ -30,7 +30,7 @@
           <i class="fa fa-cogs dark"> </i>  Profile Settings</a>
 
               
-         <a class="border-top dropdown-item " onclick="return confirm('Are you sure To Log Out')" href="../classes/logout.php" ><i class="fa fa-power-off dark"></i> Logout</a>
+         <a class="border-top dropdown-item" onclick="return confirm('Are you sure To Log Out')" href="<?= ROOT?>/logout" ><i class="fa fa-power-off dark"></i> Logout</a>
 
       </li>
   

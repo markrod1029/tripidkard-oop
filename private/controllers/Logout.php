@@ -8,11 +8,8 @@ class Logout extends Controller
 {
     function index()
     {
-    
        Auth::logout();
-            $this->redirect('login');
-
-        $this->view('home');
+            $this->redirect('/login');
 
     }
 }

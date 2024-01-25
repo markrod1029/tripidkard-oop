@@ -18,7 +18,6 @@
     </section>
 
 
-    <?= AUTH::getfname()?>
 
 
 </div>
