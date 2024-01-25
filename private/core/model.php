@@ -1,33 +1,47 @@
 <?php
 
 /**
- * 
  * Main Model
  */
-
 class Model extends Database
 {
-    public $errors = array();
-    
+    protected $table;
+    protected $allowedColumns = [];
+    protected $beforeInsert = [];
+
     public function __construct()
     {
-        // code...
         if (!property_exists($this, 'table')) {
             $this->table = strtolower(get_class($this));
         }
     }
-    
-    
 
+
+    
     public function where($column, $value)
     {
-       $column =  addslashes($column);
+        $column = addslashes($column);
         $query = "SELECT * FROM $this->table WHERE $column = :value";
-        echo $query;
-        return $this->query($query,[
-            'value' => $value
-        ]);
-        
+        return $this->query($query, ['value' => $value]);
+    }
+
+
+
+    public function authentication($column, $value)
+    {
+        $column = addslashes($column);
+        $query = "SELECT m.id, m.password, b.enterprise_id, 'merchant' AS user_type
+            FROM merchant m
+            LEFT JOIN business b ON m.id = b.merchant_id
+            WHERE m.$column = :value
+
+            UNION ALL
+
+            SELECT e.id, e.password, NULL AS enterprise_id, 'enterprise' AS user_type
+            FROM enterprise e
+            WHERE e.$column = :value";
+
+        return $this->query($query, ['value' => $value]);
     }
 
 
@@ -36,77 +50,53 @@ class Model extends Database
     {
         $query = "SELECT * FROM $this->table";
         return $this->query($query);
-        
     }
+
+
 
 
     public function insert($data)
     {
-
-
         // Remove unwanted columns
-        if (property_exists($this, 'allowedColumns'))
-        {
-            foreach($data as $key => $column)
-            
-              foreach($this->allowedColumns as $column)
-            {
-                if(!in_array($key, $this->allowedColumns ))
-                {
-                    unsent($data[$key]);
-                    // $data = $this->$column($data);
-                }
-
-            }
+        if (!empty($this->allowedColumns)) {
+            $data = array_intersect_key($data, array_flip($this->allowedColumns));
         }
-        
-        //run function before insert 
-        if (property_exists($this, 'beforeInsert'))
-        {
-            foreach($this->beforeInsert as $func)
-            {
+
+        // Run functions before insert
+        if (!empty($this->beforeInsert)) {
+            foreach ($this->beforeInsert as $func) {
                 $data = $this->$func($data);
-
             }
         }
-        
 
-        $keys = array_keys($data);
-        $columns = implode(',', $keys);
-        $values = implode(',:', $keys);
+        $keys = implode(',', array_keys($data));
+        $values = ':' . implode(',:', array_keys($data));
+        $query = "INSERT INTO $this->table ($keys) VALUES($values)";
 
-        $query = "INSERT INTO $this->table ($columns) VALUES(:$values)";
-        
         return $this->query($query, $data);
-        
     }
+
+
+
 
     public function update($id, $data)
     {
-        print_r($data);
-        $str = "";
-        foreach( $data as $key => $value ){
-            $str .= $key. '=:' . $key . ','; 
+        $setStatements = [];
+        foreach ($data as $key => $value) {
+            $setStatements[] = "$key = :$key";
         }
-        $str = trim($str, ",");
         $data['id'] = $id;
 
-        $query = "UPDATE $this->table SET $str WHERE id = :id ";
-        echo $query;
+        $query = "UPDATE $this->table SET " . implode(', ', $setStatements) . " WHERE id = :id";
         return $this->query($query, $data);
-        
     }
+
+
 
 
     public function delete($id)
     {
-      
-
         $query = "DELETE FROM $this->table WHERE id = :id";
-        $data['id'] = $id;
-        return $this->query($query, $data);
-        
+        return $this->query($query, ['id' => $id]);
     }
-
-
 }

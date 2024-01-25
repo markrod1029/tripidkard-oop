@@ -1,38 +1,45 @@
 <?php
 
 /**
- *  Home Controller
+ * Home Controller
  */
-
 class Login extends Controller
 {
-    function index()
+    public function index()
     {
-        // code....
-        $errors = array();
+        $errors = [];
 
-        if(count($_POST) > 0)
-        {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $admin = new Admin();
-           
-            if($row = $admin->where('email', $_POST['email']))
-            {
+
+            if ($row = $admin->authentication('email', $_POST['email'])) {
                 $row = $row[0];
-                if(password_verify($_POST['password'], $row->password))
-                {
+                if (password_verify($_POST['password'], $row->password)) {
                     Auth::authenticate($row);
-                    $this->redirect('/home');
+                    $this->redirectBasedOnUserType($row);
                 }
-                
-            } 
+            } else {
                 $errors['email'] = "Invalid Email or Password";
+            }
         }
-      
 
-         $this->view('login',[
-            'errors'=>$errors,
-        ]);
+        $this->view('login', ['errors' => $errors]);
+    }
 
-
+    private function redirectBasedOnUserType($row)
+    {
+        switch ($row->user_type) {
+            case 'merchant':
+                $this->redirect('/merchant/home');
+                break;
+            case 'enterprise':
+                $this->redirect('/enterprise/home');
+                break;
+            case 'tenant':
+                $this->redirect('/tenant/home');
+                break;
+            default:
+                $this->redirect('/home');
+        }
     }
 }

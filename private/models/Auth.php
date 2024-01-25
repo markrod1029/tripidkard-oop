@@ -9,9 +9,18 @@
 
     public static function authenticate($row)
     {
-        // Code
         $_SESSION['USER'] = $row;
 
+        // Set the user type based on the condition
+        if ($row->user_type === 'merchant') {
+            if ($row->enterprise_id > 0) {
+                $_SESSION['tenant'] = $row;
+            } else {
+                $_SESSION['merchant'] = $row;
+            }
+        } elseif ($row->user_type === 'enterprise') {
+            $_SESSION['enterprise'] =$row;
+        }
     }
 
     public static function logout()
