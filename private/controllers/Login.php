@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Home Controller
- */
 class Login extends Controller
 {
     public function index()
@@ -15,9 +12,11 @@ class Login extends Controller
         $errors = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $admin = new Admin();
+            // Create an instance of the Model class
+            $model = new Model();
 
-            if ($row = $admin->authentication('email', $_POST['email'])) {
+            // Use the authentication method from the Model class
+            if ($row = $model->authentication('email', $_POST['email'])) {
                 $row = $row[0];
                 if (password_verify($_POST['password'], $row->password)) {
                     Auth::authenticate($row);
@@ -30,6 +29,7 @@ class Login extends Controller
 
         $this->view('login', ['errors' => $errors]);
     }
+    
 
     private function redirectBasedOnUserType($row)
     {

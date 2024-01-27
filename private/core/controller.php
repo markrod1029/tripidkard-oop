@@ -2,7 +2,6 @@
 /**
  * Main Controller Class
  */
-
  class Controller
  {
 	public function view($view, $data = array())

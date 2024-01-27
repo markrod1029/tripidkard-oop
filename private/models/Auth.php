@@ -1,8 +1,5 @@
 <?php
-/**
- * 
- *  Authentication class
- */
+
 class Auth 
 {
     public static function authenticate($row)
@@ -21,22 +18,21 @@ class Auth
         // Set a session variable indicating that the user is authenticated
         $_SESSION['authenticated'] = true;
     }
-public static function logout()
-{
-    // Clear user-related sessions
-    unset($_SESSION['USER']);
-    unset($_SESSION['merchant']);
-    unset($_SESSION['enterprise']);
-    unset($_SESSION['tenant']);
-    unset($_SESSION['authenticated']);
 
-    // Clear all session data
-    session_unset();
-    session_destroy();
-    session_start();
+    public static function logout()
+    {
+        // Clear user-related sessions
+        unset($_SESSION['USER']);
+        unset($_SESSION['merchant']);
+        unset($_SESSION['enterprise']);
+        unset($_SESSION['tenant']);
+        unset($_SESSION['authenticated']);
 
-}
-
+        // Clear all session data
+        session_unset();
+        session_destroy();
+        session_start();
+    }
 
     public static function logged_in($userType = null)
     {

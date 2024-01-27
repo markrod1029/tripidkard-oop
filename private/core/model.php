@@ -40,6 +40,7 @@ class Model extends Database
             SELECT e.id, e.password, NULL AS enterprise_id, 'enterprise' AS user_type
             FROM enterprise e
             WHERE e.$column = :value";
+            echo $query;
 
         return $this->query($query, ['value' => $value]);
     }

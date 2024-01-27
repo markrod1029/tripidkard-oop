@@ -1,6 +1,6 @@
 <?php
-define('ROOT', 'http://localhost/tripidkard-oop/public');
-define('ASSETS', 'http://localhost/tripidkard-oop/public/assets');
+define('ROOT', 'http://localhost/oop/tripidkard-oop/public');
+define('ASSETS', 'http://localhost/oop/tripidkard-oop/public/assets');
 
 
 define('DBNAME', 'tripidkard');
